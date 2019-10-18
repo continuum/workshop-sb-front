@@ -11,16 +11,34 @@
 <body>
 <main role="main">
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-        <div class="container">
-            <p>Admin Workshop SB Front - Products</p>
-        </div>
-    </div>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">Workshop SB Front</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/index">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin">Admin</a>
+                    </li>
+
+                </ul>
+                <form class="form-inline mt-2 mt-md-0" method="post" action="search">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="name" name="name">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <br/><br/>
 
     <div class="container">
         <!-- Example row of columns -->
-        <div class="row">
+        <div class="row" style="margin-top: 30px;">
 
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
@@ -35,7 +53,6 @@
                         <tr>
                             <td>${product.name}</td>
                             <td>${product.price}</td>
-
                         </tr>
                     </#list>
                 </#if>

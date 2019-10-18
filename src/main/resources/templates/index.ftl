@@ -26,10 +26,10 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/index">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Admin</a>
+                        <a class="nav-link" href="/admin">Admin</a>
                     </li>
 
                 </ul>
@@ -43,27 +43,29 @@
     <br/><br/>
     <div class="container">
         <!-- Example row of columns -->
-        <div class="row">
-            <#if model?has_content>
-                <#list model.product.detail as p>
-                    <div class="card" style="width: 18rem;">
-                        <h5 class="card-header">${p.productName}</h5>
-                        <div class="card-body">
-
-                            <p class="card-text">Price: $${p.price}</p>
-                            <p class="card-text">Comentarios: ${p.commentsCount}</p>
-                            <p class="card-text">Valoraciones:
-                                <#list 1..p.rating as x>
-                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                                </#list>
-                            </p>
-                            <p class="card-text">Referencia: ${p.ecommerce}</p>
-
-
-                        </div>
-                    </div>
-                </#list>
-            </#if>
+        <div class="row" style="margin-top: 30px;">
+                <#if model?has_content>
+                    <#list model.products as p>
+                        <div class="card" style="width: 18rem; margin: 5px;">
+                           <h5 class="card-header">${p.name}</h5>
+                           <div class="card-body">
+                               <p class="card-text">Price in our shop: <b>$${p.price}</b></p>
+                               <hr>
+                               <#list p.detail as d>
+                                <p class="card-text">Referencia: <b>${d.ecommerce}</b></p>
+                                 <p class="card-text">Comentarios: ${d.commentsCount}</p>
+                                 <p class="card-text">Valoraciones:
+                                     <#list 1..d.rating as x>
+                                         <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                                     </#list>
+                                 </p>
+                                 <p class="card-text">Price <b>$${d.price}</b> in <b>${d.ecommerce}</b></p>
+                                 <hr>
+                               </#list>
+                           </div>
+                       </div>
+                    </#list>
+                </#if>
         </div>
 
     </div> <!-- /container -->

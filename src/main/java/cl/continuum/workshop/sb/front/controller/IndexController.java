@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class IndexController extends BaseController {
+
     private static Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
@@ -23,17 +25,19 @@ public class IndexController extends BaseController {
 
     @GetMapping({"/", "/index"})
     public ModelAndView index(Model model) {
-
-        return new ModelAndView("index","model", getModel());
-    }
-
-    @GetMapping("search")
-    public ModelAndView search(@RequestParam("name") String name){
-
-        Product product = service.searchByName(name);
-        addModel("product", product);
         return new ModelAndView("index","model", getModel());
     }
 
 
+    @GetMapping("/search")
+    public ModelAndView search(){
+        return new ModelAndView("index","model", getModel());
+    }
+
+    @PostMapping("/search")
+    public ModelAndView search2(@RequestParam("name") String name){
+        List<Product> products = service.searchByName(name);
+        addModel("products", products);
+        return new ModelAndView("index","model", getModel());
+    }
 }
